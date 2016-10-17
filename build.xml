@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Magnolia-Core" default="deploy" basedir=".">
+    <description>Magnolia-Core</description>
+    <property environment="env"/>
+    <property file="resources/magnolia.properties"/>
+    <property name="display.name" value="Magnolia-Core"/>
+    <property name="name" value="Magnolia-Core"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="resource.classes.dir" value="${classes.dir}/ir/magnolia/core/resources"/>
+    <property name="resources.dir" value="resources"/>
+    <property name="src.dir" value="src"/>
+    <property name="doc.dir" value="doc"/>
+    <property name="doc.api.dir" value="${doc.dir}/api"/>
+    <property name="doc.ref.dir" value="${doc.dir}/reference"/>
+    <property name="classes.prefix" value="ir/magnolia"/>
+    <property name="src.classes.prefix" value="${classes.prefix}/core"/>
+    <property name="deploy.dir" value="${depolyment.path}/${jboss.server}/deployments"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="javac.debug" value="true"/>
+    <property name="javac.deprecation" value="false"/>
+    <property name="javac.version" value="1.8"/>
+    <path id="classpath">
+        <pathelement path="."/>
+    </path>
+    <path id="build.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+    <path id="compile.classpath">
+        <path refid="build.classpath"/>
+        <pathelement location="${classes.dir}"/>
+    </path>
+    <patternset id="meta.files">
+        <include name="**/*.dtd"/>
+        <include name="**/*.xml"/>
+        <include name="**/*.xslt"/>
+        <include name="**/*.properties"/>
+    </patternset>
+    <target name="clean" description="Cleans up the build directory">
+        <delete dir="${build.dir}/classes/${src.classes.prefix}"/>
+        <delete>
+            <fileset dir="${build.dir}">
+                <include name="Magnolia-Core.*"/>
+            </fileset>
+        </delete>
+    </target>
+    <target name="init" description="Initialize the build">
+        <echo message="Build ${display.name}"/>
+        <tstamp/>
+        <mkdir dir="${classes.dir}"/>
+        <copy todir="${classes.dir}">
+            <fileset dir="${src.dir}">
+                <patternset refid="meta.files"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="compile" depends="init, clean" description="Compile the Java source code">
+        <javac destdir="${classes.dir}" classpathref="compile.classpath" debug="${javac.debug}" includeantruntime="true"
+               deprecation="${javac.deprecation}" encoding="UTF-8" fork="true" source="1.8">
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+    <!-- ############################ Main Tragets #############################-->
+    <target name="war" depends="compile">
+        <delete dir="${build.dir}/${name}.war" verbose="yes"/>
+        <copy todir="${classes.dir}/WEB-INF" overwrite="yes" verbose="yes">
+            <fileset dir="${resources.dir}/WEB-INF">
+                <include name="*.xml"/>
+            </fileset>
+            <filterset>
+                <filter token="app.name" value="${app.name}"/>
+            </filterset>
+        </copy>
+        <jar destfile="${build.dir}/${name}.war">
+            <zipfileset dir="${classes.dir}/WEB-INF" prefix="WEB-INF">
+                <include name="*.xml"/>
+            </zipfileset>
+            <zipfileset id="war.lib" prefix="WEB-INF/lib" dir="${lib.dir}">
+                <include name="commons-digester.jar"/>
+                <include name="commons-fileupload.jar"/>
+                <include name="commons-discovery.jar"/>
+                <include name="commons-codec.jar"/>
+                <include name="commons-httpclient.jar"/>
+                <include name="commons-net.jar"/>
+                <include name="commons-lang.jar"/>
+                <include name="commons-collections.jar"/>
+                <include name="commons-beanutils.jar"/>
+                <include name="commons-lang-2.4.jar"/>
+                <include name="commons-io.jar"/>
+                <include name="httpclient.jar"/>
+                <include name="httpcore.jar"/>
+                <include name="hsqldb.jar"/>
+                <include name="log4j-1.2.8.jar"/>
+                <include name="persiancalendar.jar"/>
+                <include name="icu4j_3_4_4.jar"/>
+            </zipfileset>
+            <zipfileset id="war.metainf" prefix="WEB-INF/classes/META-INF" dir="${resources.dir}/META-INF">
+                <include name="*.xml"/>
+            </zipfileset>
+            <zipfileset id="war.classes" dir="${classes.dir}" prefix="WEB-INF/classes">
+                <include name="**/magnolia/**/*.class"/>
+                <include name="**/resources/*.properties"/>
+            </zipfileset>
+            <zipfileset id="war.webinf.seam" prefix="WEB-INF/classes" dir="${resources.dir}">
+                <include name="magnolia.properties"/>
+            </zipfileset>
+            <zipfileset id="war.bundle" prefix="WEB-INF/classes" dir="${classes.dir}">
+                <include name="*.properties"/>
+                <include name="*.xml"/>
+            </zipfileset>
+            <manifest>
+                <attribute name="Built-By" value="Hamed Hatami"/>
+                <attribute name="Dependencies" value="org.apache.cxf, org.dom4j, org.jboss.resteasy.wadl"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="webservice_client" depends="init">
+        <java classname="org.apache.axis.wsdl.WSDL2Java" fork="yes" dir="${src.dir}">
+            <arg value="http://niksms.com:1370/NiksmsWebservice.svc?wsdl"/>
+            <arg value="-porg.tempuri"/>
+            <classpath refid="build.classpath"/>
+        </java>
+    </target>
+
+    <target name="deploy" depends="war">
+        <copy file="${build.dir}/${name}.war" todir="${deploy.dir}" overwrite="yes" verbose="yes"/>
+    </target>
+</project>
