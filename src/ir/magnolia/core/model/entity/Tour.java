@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class Tour extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
     @Column(name = "start_date")
