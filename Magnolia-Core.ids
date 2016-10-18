@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="Derby - magnolia@localhost" uuid="473e5430-84dc-494e-a4f9-b054827d5de3">
-    <database-info product="Apache Derby" version="10.11.1.1 - (1616546)" jdbc-version="4.2" driver-name="Apache Derby Network Client JDBC Driver" driver-version="10.11.1.1 - (1616546)">
-      <identifier-quote-string>&quot;</identifier-quote-string>
-    </database-info>
-    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
     <schema name="APP" catalog=""/>
     <schema name="MAGNOLIA" catalog=""/>
     <table name="ACCINDEPENDENTUSECASE_SEQ" schema="MAGNOLIA" catalog="" type="TABLE">
@@ -53,7 +50,6 @@
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="TLEVELLEN" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="SQL160117231121760" columns="ID"/>
-      <exported-key name="FK_MBBJPDWHTEM3QH8N38S348GMN" table="AC_ACCOUNT" schema="MAGNOLIA" catalog="" columns="ACCOUNT_LEVEL"/>
     </table>
     <table name="AC_ACCOUNT_TYPE" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -64,7 +60,6 @@
       <column name="IS_ACTIVE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231121990" columns="ID"/>
-      <exported-key name="FK_N87OWVL01XIEN0UEA84TORHNN" table="AC_ACCOUNT" schema="MAGNOLIA" catalog="" columns="ACCOUNT_TYPE"/>
     </table>
     <table name="AC_BALANCE_TYPE" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -74,7 +69,6 @@
       <column name="EVENT_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231122180" columns="ID"/>
-      <exported-key name="FK_B935QNIO0MTMQHUN3DKCHNTF6" table="AC_ACCOUNT" schema="MAGNOLIA" catalog="" columns="BALANCETYPE"/>
     </table>
     <table name="AC_BASE_GROUP" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -84,7 +78,6 @@
       <column name="EVENT_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231122370" columns="ID"/>
-      <exported-key name="FK_1SQUD4ABDFY2H2YAHH7J8INDC" table="AC_ACCOUNT" schema="MAGNOLIA" catalog="" columns="BASE_GROUP"/>
     </table>
     <table name="AC_DOC_STATUS" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -121,7 +114,6 @@
       <column name="EVENT_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231123100" columns="ID"/>
-      <exported-key name="FK_369GGJ6X9QUQRAQO8CW4I4CDB" table="TB_ORGANIZATION_INDEPNDENTTYPE" schema="MAGNOLIA" catalog="" columns="INDEPENDENTTYPE_ID"/>
     </table>
     <table name="APPROVEDBUDGETROW_SEQ" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="NEXT_VAL" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
@@ -201,7 +193,6 @@
       <column name="IS_ACTIVE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231125190" columns="ID"/>
-      <exported-key name="FK_88V6GDMO323EYX3QBMVISIJGC" table="BG_BUDGET" schema="MAGNOLIA" catalog="" columns="BUDGE_TITLE"/>
     </table>
     <table name="BG_INTERNALAGREEMENTROW" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -263,7 +254,6 @@
       <column name="TABLE_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="TITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231125420" columns="ID"/>
-      <exported-key name="FK_6JACL0CVGQDSEHLJC7MMPWU6D" table="CMM_ACCINDEPENDENT_USECASES" schema="MAGNOLIA" catalog="" columns="ACCINDEPENDENTID"/>
     </table>
     <table name="CM_SUB_SYSTEM" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -282,8 +272,6 @@
       <column name="EVENT_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231125820" columns="ID"/>
-      <exported-key name="FK_LB18N432KIAC89O6G99MABCOQ" table="BG_APPROVEDBUDGETROW" schema="MAGNOLIA" catalog="" columns="UNIT_ID"/>
-      <exported-key name="FK_DLDRYUBAF452OJRU5H0UI7DA9" table="BG_INTERNALAGREEMENTROW" schema="MAGNOLIA" catalog="" columns="UNIT_ID"/>
     </table>
     <table name="DOC_STATUS_SEQ" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="NEXT_VAL" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
@@ -379,9 +367,6 @@
       <column name="ORGANIZATION_TYPE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="SQL160117231126970" columns="ID"/>
       <foreign-key name="FK_6K0HGRJM9NRP6XTWQEPJLG33" columns="ORGANIZATION_TYPE" ref-table="TB_ORGANIZATION_TYPE" ref-schema="MAGNOLIA" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_1PFP3DD3LCP391FQJ20O7CUXH" table="TB_BANK_IDENTITY" schema="MAGNOLIA" catalog="" columns="ORGANIZATION_ID"/>
-      <exported-key name="FK_NSYBL2PAIHROH5PVN6C7C56AM" table="TB_ORGANIZATION_INDEPNDENTTYPE" schema="MAGNOLIA" catalog="" columns="ORGANIZATION_ID"/>
-      <exported-key name="FK_BG4LP1AM2A32UMCP04KYA4JHM" table="TR_BANK_ACCOUNT" schema="MAGNOLIA" catalog="" columns="ORGANIZATION_ID"/>
     </table>
     <table name="TB_ORGANIZATION_INDEPNDENTTYPE" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ORGANIZATION_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -398,7 +383,6 @@
       <column name="EVENT_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231127360" columns="ID"/>
-      <exported-key name="FK_6K0HGRJM9NRP6XTWQEPJLG33" table="TB_ORGANIZATION" schema="MAGNOLIA" catalog="" columns="ORGANIZATION_TYPE"/>
     </table>
     <table name="TB_PERSON" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -412,8 +396,6 @@
       <column name="LASTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NATIONAL_CODE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231127570" columns="ID"/>
-      <exported-key name="FK_L2NJ9AN6QE11LYB7L88XQXRN3" table="TB_BANK_ACCOUNT_PERSONS" schema="MAGNOLIA" catalog="" columns="PERSON_ID"/>
-      <exported-key name="FK_4PWP17HC46W4VS08NNFJ2GKKQ" table="TB_USER" schema="MAGNOLIA" catalog="" columns="PERSON_ID"/>
     </table>
     <table name="TB_POSITION" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -435,7 +417,6 @@
       <column name="EVENT_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231127950" columns="ID"/>
-      <exported-key name="FK_GF85YML5KXROVYOJTF7N4F2Q8" table="TB_POSITION" schema="MAGNOLIA" catalog="" columns="POSITION_TYPE"/>
     </table>
     <table name="TB_ROLE" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -449,7 +430,6 @@
       <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="USECASE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231128160" columns="ID"/>
-      <exported-key name="FK_MMK5ERAQO5PJAK16BMRXRX9NH" table="TB_WORKGROUP_ROLE" schema="MAGNOLIA" catalog="" columns="ROLE_ID"/>
     </table>
     <table name="TB_STATEMENT_TYPE" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -473,7 +453,6 @@
       <column name="PERSON_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="SQL160117231128390" columns="ID"/>
       <foreign-key name="FK_4PWP17HC46W4VS08NNFJ2GKKQ" columns="PERSON_ID" ref-table="TB_PERSON" ref-schema="MAGNOLIA" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_PNBPX5H642IP59XIODES285MV" table="TB_USER_WORKGROUP" schema="MAGNOLIA" catalog="" columns="USER_ID"/>
     </table>
     <table name="TB_USER_WORKGROUP" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="USER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -492,8 +471,6 @@
       <column name="ORGANIZATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="PERSIAN_DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231128870" columns="ID"/>
-      <exported-key name="FK_52GXXC8QII0BYUOLOYR2UPHGM" table="TB_USER_WORKGROUP" schema="MAGNOLIA" catalog="" columns="WORKGROUP_ID"/>
-      <exported-key name="FK_AH0L6NU834ITKNWAED1JFQHMH" table="TB_WORKGROUP_ROLE" schema="MAGNOLIA" catalog="" columns="WORKGROUP_ID"/>
     </table>
     <table name="TB_WORKGROUP_ROLE" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="WORKGROUP_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -511,7 +488,6 @@
       <column name="CODE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231129250" columns="ID"/>
-      <exported-key name="FK_2123C13M88SUETCAP0URQRTLF" table="TR_BANK_UNIT" schema="MAGNOLIA" catalog="" columns="BANK_ID"/>
     </table>
     <table name="TR_BANK_ACCOUNT" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -533,8 +509,6 @@
       <foreign-key name="FK_BG4LP1AM2A32UMCP04KYA4JHM" columns="ORGANIZATION_ID" ref-table="TB_ORGANIZATION" ref-schema="MAGNOLIA" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_S7XMYOIE3YEBINE7LQUKP5XT2" columns="BANK_ACCOUNT_TYPE_ID" ref-table="TR_BANK_ACCOUNT_TYPE" ref-schema="MAGNOLIA" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_O6VHK1QC4CMLLPBEJJ798GY5E" columns="BANK_UNIT_ID" ref-table="TR_BANK_UNIT" ref-schema="MAGNOLIA" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_SX7F8C6UDKQJUIOGGG902HJRT" table="TB_BANK_ACCOUNT_PERSONS" schema="MAGNOLIA" catalog="" columns="BANK_ACCOUNT_ID"/>
-      <exported-key name="FK_CLT2JJD9XEGYDRT5RUUTBI8R2" table="TB_BANK_IDENTITY" schema="MAGNOLIA" catalog="" columns="BANK_ACCOUNT_ID"/>
     </table>
     <table name="TR_BANK_ACCOUNT_TYPE" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -544,7 +518,6 @@
       <column name="EVENT_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="SQL160117231129660" columns="ID"/>
-      <exported-key name="FK_S7XMYOIE3YEBINE7LQUKP5XT2" table="TR_BANK_ACCOUNT" schema="MAGNOLIA" catalog="" columns="BANK_ACCOUNT_TYPE_ID"/>
     </table>
     <table name="TR_BANK_UNIT" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -558,7 +531,6 @@
       <column name="BANK_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="SQL160117231129870" columns="ID"/>
       <foreign-key name="FK_2123C13M88SUETCAP0URQRTLF" columns="BANK_ID" ref-table="TR_BANK" ref-schema="MAGNOLIA" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_O6VHK1QC4CMLLPBEJJ798GY5E" table="TR_BANK_ACCOUNT" schema="MAGNOLIA" catalog="" columns="BANK_UNIT_ID"/>
     </table>
     <table name="USECASE_SEQ" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="NEXT_VAL" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
@@ -580,7 +552,6 @@
       <column name="PROCESS_SVG" sqlType="CLOB" precision="255" scale="0" nullable="false" jdbcType="2005"/>
       <column name="VERSION" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="SQL160117231130070" columns="ID"/>
-      <exported-key name="FK_9DEW7LU2I7KC957GWQYH1C4DS" table="WF_WORKFLOW_PARAMETERS" schema="MAGNOLIA" catalog="" columns="WORKFLOW_ID"/>
     </table>
     <table name="WF_WORKFLOW_PARAMETERS" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
