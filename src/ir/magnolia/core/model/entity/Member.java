@@ -12,7 +12,7 @@ import java.util.Set;
 public class Member extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "id")
     private long id;
     @Column(name = "mobile_number")

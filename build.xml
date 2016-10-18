@@ -89,8 +89,8 @@
                 <include name="commons-beanutils.jar"/>
                 <include name="commons-lang-2.4.jar"/>
                 <include name="commons-io.jar"/>
-                <include name="httpclient.jar"/>
-                <include name="httpcore.jar"/>
+                <include name="httpclient-4.2.5.jar"/>
+                <include name="httpcore-4.2.5.jar"/>
                 <include name="hsqldb.jar"/>
                 <include name="log4j-1.2.8.jar"/>
                 <include name="persiancalendar.jar"/>

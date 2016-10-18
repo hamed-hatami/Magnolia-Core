@@ -7,11 +7,8 @@
     <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
     <schema name="APP" catalog=""/>
     <schema name="MAGNOLIA" catalog=""/>
-    <table name="HIBERNATE_SEQUENCE" schema="MAGNOLIA" catalog="" type="TABLE">
-      <column name="NEXT_VAL" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-    </table>
     <table name="TB_FRIEND" schema="MAGNOLIA" catalog="" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="R0VORVJBVEVEX0JZX0RFRkFVTFQ=" autoIncrement="true"/>
       <column name="REGISTER_DATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="BIRTH_DATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="FIRSTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -20,24 +17,24 @@
       <column name="LATIN_LASTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="NATIONAL_CODE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="MEMBER_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <primary-key name="SQL161018153632760" columns="ID"/>
+      <primary-key name="SQL161018160518190" columns="ID"/>
       <foreign-key name="FKSVE8IHSMCHG44MVGNAD18WOY" columns="MEMBER_ID" ref-table="TB_MEMBER" ref-schema="MAGNOLIA" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="TB_GEOGRAPHY" schema="MAGNOLIA" catalog="" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="R0VORVJBVEVEX0JZX0RFRkFVTFQ=" autoIncrement="true"/>
       <column name="REGISTER_DATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="GEOGRAPHY_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="GEOGRAPHY_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="SQL161018153632920" columns="ID"/>
+      <primary-key name="SQL161018160518420" columns="ID"/>
     </table>
     <table name="TB_MEMBER" schema="MAGNOLIA" catalog="" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="R0VORVJBVEVEX0JZX0RFRkFVTFQ=" autoIncrement="true"/>
       <column name="REGISTER_DATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="MEMBER_ACTIVE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
       <column name="LAST_MODIFY_DATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="MEMBERSHIP_CODE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="MOBILE_NUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="SQL161018153633050" columns="ID"/>
+      <primary-key name="SQL161018160518700" columns="ID"/>
     </table>
     <table name="TB_ORGANIZATION" schema="MAGNOLIA" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -79,12 +76,12 @@
       <foreign-key name="FKAO0CYTL1L019YIGSU3H4J01P1" columns="ORG_ID" ref-table="TB_ORGANIZATION" ref-schema="MAGNOLIA" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="TB_TOUR" schema="MAGNOLIA" catalog="" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="R0VORVJBVEVEX0JZX0RFRkFVTFQ=" autoIncrement="true"/>
       <column name="REGISTER_DATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="END_DATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="PRICE" sqlType="NUMERIC" precision="19" scale="2" nullable="true" jdbcType="2"/>
       <column name="START_DATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="SQL161018153633150" columns="ID"/>
+      <primary-key name="SQL161018160519050" columns="ID"/>
     </table>
   </data-source>
 </component>
