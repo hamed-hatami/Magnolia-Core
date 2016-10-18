@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_member")
+@NamedQueries(
+        @NamedQuery(name = "Member.findByCode", query = "select m from Member m where m.membershipCode=:code and m.mobileNumber=:number")
+)
 public class Member extends BaseEntity {
 
     @Id
@@ -20,6 +23,11 @@ public class Member extends BaseEntity {
     private boolean active;
 
     public Member() {
+    }
+
+    public Member(String mobileNumber, String membershipCode) {
+        this.mobileNumber = mobileNumber;
+        this.membershipCode = membershipCode;
     }
 
     public Member(String mobileNumber, String membershipCode, String lastModificationDate, boolean active) {

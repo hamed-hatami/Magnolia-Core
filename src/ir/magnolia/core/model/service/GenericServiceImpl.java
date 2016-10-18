@@ -1,9 +1,12 @@
 package ir.magnolia.core.model.service;
 
+import ir.magnolia.core.model.dao.MemberDAOImpl;
+import ir.magnolia.core.model.entity.Member;
 import ir.magnolia.core.util.Configuration;
 import ir.magnolia.core.util.RESTfulClientUtil;
 import ir.magnolia.core.util.WebServiceClientUtil;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,6 +19,8 @@ public class GenericServiceImpl {
     private RESTfulClientUtil resTfulClientUtil;
     @Inject
     private WebServiceClientUtil webServiceClientUtil;
+    @EJB
+    private MemberDAOImpl memberDAO;
 
     private final String SERVICE_URL = Configuration.getProperty("service_url");
 
@@ -40,8 +45,7 @@ public class GenericServiceImpl {
     }
 
     public String sendMessage(String mobileNumber, String message) throws Exception {
-        // todo: send sms with message
-        return resTfulClientUtil.restFullService(SERVICE_URL, mobileNumber);
+        return webServiceClientUtil.sendMessage(mobileNumber, message);
     }
 
     public String getTicketImage(String mobileNumber, String email) throws Exception {
@@ -50,13 +54,16 @@ public class GenericServiceImpl {
     }
 
     public String confirmKey(String mobileNumber, String key) throws Exception {
-        // todo: confirm key with phone number and key
-        return resTfulClientUtil.restFullService(SERVICE_URL, mobileNumber);
+        Member member = memberDAO.findByCodeAndMobileNumber(mobileNumber, key);
+        if (member != null) {
+            return "true";
+        }
+        return "false";
     }
 
     public String generateKey(String mobileNumber) throws Exception {
         String generatedCode = webServiceClientUtil.sendCode(mobileNumber);
-        //todo: insert generatedCode into DB
+        memberDAO.create(new Member(mobileNumber, generatedCode));
         return generatedCode;
     }
 
