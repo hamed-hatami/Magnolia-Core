@@ -6,7 +6,7 @@
     <persistence-unit name="corePU" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/magnoliaDS</jta-data-source>
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.jdbc.charSet" value="UTF-8"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
             <property name="hibernate.format_sql" value="false"/>
