@@ -1,12 +1,14 @@
 package ir.magnolia.core.model.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_member")
-@NamedQueries(
-        @NamedQuery(name = "Member.findByCode", query = "select m from Member m where m.membershipCode=:code and m.mobileNumber=:number")
-)
+@NamedQueries({
+        @NamedQuery(name = "Member.findByCode", query = "select m from Member m where m.membershipCode=:code and m.mobileNumber=:number"),
+        @NamedQuery(name = "Member.findByNumber", query = "select m from Member m where m.mobileNumber=:number")
+})
 public class Member extends BaseEntity {
 
     @Id
@@ -21,6 +23,9 @@ public class Member extends BaseEntity {
     private String lastModificationDate;
     @Column(name = "member_active")
     private boolean active;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id", name = "member_id")
+    private Set<Friend> friends;
 
     public Member() {
     }
@@ -75,5 +80,13 @@ public class Member extends BaseEntity {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Set<Friend> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<Friend> friends) {
+        this.friends = friends;
     }
 }

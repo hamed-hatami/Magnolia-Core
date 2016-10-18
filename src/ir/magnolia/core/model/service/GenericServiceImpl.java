@@ -1,6 +1,8 @@
 package ir.magnolia.core.model.service;
 
+import ir.magnolia.core.model.dao.FriendDAOImpl;
 import ir.magnolia.core.model.dao.MemberDAOImpl;
+import ir.magnolia.core.model.entity.Friend;
 import ir.magnolia.core.model.entity.Member;
 import ir.magnolia.core.util.Configuration;
 import ir.magnolia.core.util.RESTfulClientUtil;
@@ -10,6 +12,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.*;
 
 @Stateless
 @LocalBean
@@ -21,27 +24,40 @@ public class GenericServiceImpl {
     private WebServiceClientUtil webServiceClientUtil;
     @EJB
     private MemberDAOImpl memberDAO;
+    @EJB
+    private FriendDAOImpl friendDAO;
 
     private final String SERVICE_URL = Configuration.getProperty("service_url");
 
-    public String editFriend(String mobileNumber) throws Exception {
-        // todo: edit one of my friends
-        return resTfulClientUtil.restFullService(SERVICE_URL, mobileNumber);
+    public String editFriend(Friend friend) throws Exception {
+        if (friendDAO.update(friend) != null) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
-    public String deleteFriend(String mobileNumber) throws Exception {
-        // todo: delete one of my friends
-        return resTfulClientUtil.restFullService(SERVICE_URL, mobileNumber);
+    public String deleteFriend(Friend friend) throws Exception {
+        if (friendDAO.delete(friend)) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
-    public String addFriend(String mobileNumber) throws Exception {
-        // todo: add friend to my list
-        return resTfulClientUtil.restFullService(SERVICE_URL, mobileNumber);
+    public String addFriend(String ownerMobileNumber, Friend friend) throws Exception {
+        Member member = memberDAO.memberByMobileNumber(ownerMobileNumber);
+        member.setFriends(new HashSet<>(Collections.singletonList(friend)));
+        if (memberDAO.update(member) != null) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
-    public String listOfFriends(String mobileNumber) throws Exception {
-        // todo: get list of friends from DB
-        return resTfulClientUtil.restFullService(SERVICE_URL, mobileNumber);
+    public Set<Friend> listOfFriends(String mobileNumber) throws Exception {
+        Member member = memberDAO.memberByMobileNumber(mobileNumber);
+        return member.getFriends();
     }
 
     public String sendMessage(String mobileNumber, String message) throws Exception {

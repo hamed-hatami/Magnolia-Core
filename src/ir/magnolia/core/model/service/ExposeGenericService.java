@@ -1,11 +1,14 @@
 package ir.magnolia.core.model.service;
 
+import ir.magnolia.core.model.entity.Friend;
+
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.Set;
 
 
 @Path("/exposeGenericService")
@@ -18,57 +21,62 @@ public class ExposeGenericService {
     @Path("/editFriend")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String editFriend(String mobileNumber) {
-        try{
-            return genericService.editFriend(mobileNumber);
+    public String editFriend(Friend friend) {
+        try {
+            return genericService.editFriend(friend);
         } catch (Exception e) {
-            return "0";
+            return "false";
         }
     }
+
     @POST
     @Path("/deleteFriend")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String deleteFriend(String mobileNumber) {
-        try{
-            return genericService.deleteFriend(mobileNumber);
+    public String deleteFriend(Friend friend) {
+        try {
+            return genericService.deleteFriend(friend);
         } catch (Exception e) {
-            return "0";
+            return "false";
         }
     }
+
     @POST
     @Path("/addFriend")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String addFriend(String mobileNumber) {
-        try{
-            return genericService.addFriend(mobileNumber);
+    public String addFriend(String ownerMobileNumber, Friend friend) {
+        try {
+            return genericService.addFriend(ownerMobileNumber, friend);
         } catch (Exception e) {
-            return "0";
+            return "false";
         }
     }
+
     @POST
     @Path("/listOfFriends")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String listOfFriends(String mobileNumber) {
-        try{
+    public Set<Friend> listOfFriends(String mobileNumber) {
+        try {
             return genericService.listOfFriends(mobileNumber);
         } catch (Exception e) {
-            return "0";
+            return null;
         }
     }
+
     @POST
     @Path("/sendMessage")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String sendMessage(String mobileNumber, String message) {
-        try{
+        try {
             return genericService.sendMessage(mobileNumber, message);
         } catch (Exception e) {
             return "0";
         }
     }
+
     @POST
     @Path("/getTicketImage")
     @Produces(MediaType.APPLICATION_JSON)
@@ -80,6 +88,7 @@ public class ExposeGenericService {
             return "0";
         }
     }
+
     @POST
     @Path("/confirmKey")
     @Produces(MediaType.APPLICATION_JSON)

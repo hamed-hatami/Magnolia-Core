@@ -21,4 +21,14 @@ public class MemberDAOImpl<T extends Member> extends BaseDAOImpl<T> {
         }
     }
 
+    public T memberByMobileNumber(String mobileNumber) {
+        try {
+            return (T) em.createNamedQuery("Member.findByNumber")
+                    .setParameter("number", mobileNumber)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }
