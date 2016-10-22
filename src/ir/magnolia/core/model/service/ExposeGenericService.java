@@ -126,6 +126,18 @@ public class ExposeGenericService {
     }
 
     @POST
+    @Path("/findTickets")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String findTickets(String ticket, String sourceCity, String destinationCity, String flighDate) {
+        try {
+            return genericService.findTickets(ticket, sourceCity, destinationCity, flighDate);
+        } catch (Exception e) {
+            return "0";
+        }
+    }
+
+    @POST
     @Path("/getAllTicket")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

@@ -5,6 +5,7 @@ import ir.magnolia.core.model.dao.MemberDAOImpl;
 import ir.magnolia.core.model.entity.Friend;
 import ir.magnolia.core.model.entity.Member;
 import ir.magnolia.core.util.Configuration;
+import ir.magnolia.core.util.JsonUtil;
 import ir.magnolia.core.util.RESTfulClientUtil;
 import ir.magnolia.core.util.WebServiceClientUtil;
 
@@ -12,7 +13,10 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Stateless
 @LocalBean
@@ -28,6 +32,15 @@ public class GenericServiceImpl {
     private FriendDAOImpl friendDAO;
 
     private final String SERVICE_URL = Configuration.getProperty("service_url");
+
+    public String findTickets(String ticket, String sourceCity, String destinationCity, String flighDate) {
+        try {
+            return JsonUtil.object2Json(JsonUtil.findInJson(getAllTicket(ticket)).parallelStream().filter(order -> order.getSourceCityChar().equalsIgnoreCase(sourceCity) && order.getDestinationCityChar().equalsIgnoreCase(destinationCity) && order.getFlighDate().equalsIgnoreCase(flighDate)).collect(Collectors.toList()));
+        } catch (Exception e) {
+            return "0";
+        }
+
+    }
 
     public String editFriend(Friend friend) throws Exception {
         if (friendDAO.update(friend) != null) {
