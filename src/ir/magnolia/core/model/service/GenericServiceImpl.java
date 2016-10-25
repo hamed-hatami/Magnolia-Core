@@ -33,9 +33,9 @@ public class GenericServiceImpl {
 
     private final String SERVICE_URL = Configuration.getProperty("service_url");
 
-    public String findTickets(String ticket, String sourceCity, String destinationCity, String flighDate) {
+    public String findTickets(String ticket, String sourceCity, String destinationCity, String flightDate) {
         try {
-            return JsonUtil.object2Json(JsonUtil.findInJson(getAllTicket(ticket)).parallelStream().filter(order -> order.getSourceCityChar().equalsIgnoreCase(sourceCity) && order.getDestinationCityChar().equalsIgnoreCase(destinationCity) && order.getFlighDate().equalsIgnoreCase(flighDate)).collect(Collectors.toList()));
+            return JsonUtil.object2Json(JsonUtil.findInJson(getAllTicket(ticket)).parallelStream().filter(order -> order.getSourceCityChar().equalsIgnoreCase(sourceCity) && order.getDestinationCityChar().equalsIgnoreCase(destinationCity) && order.getFlighDate().equalsIgnoreCase(flightDate)).collect(Collectors.toList()));
         } catch (Exception e) {
             return "0";
         }
@@ -118,6 +118,19 @@ public class GenericServiceImpl {
 
     public String ticketFile(String ticketFile) throws Exception {
         return resTfulClientUtil.restFullService(SERVICE_URL, ticketFile);
+    }
+
+    public String getIssuedTicketPNR(String reservedCode) throws Exception {
+        return resTfulClientUtil.restFullService(SERVICE_URL, reservedCode);
+    }
+
+    public String remainingAccount(String account) throws Exception {
+        return resTfulClientUtil.restFullService(SERVICE_URL, account);
+    }
+
+    public String searchSystemTicket(String queryString, String sessionID) throws Exception {
+        String message = resTfulClientUtil.restFullService(SERVICE_URL, queryString);
+        return resTfulClientUtil.restFullService(SERVICE_URL, "{\"MethodName\":\"GetSystemTicketResualt\",\"SessionID\":\"" + sessionID + "\",\"Parameters\":[{\"SearchCode\":\"" + message + "\"}]}");
     }
 
 }

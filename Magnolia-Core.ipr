@@ -26,7 +26,7 @@
   <component name="CopyrightManager" default="" />
   <component name="DataSourceManagerImpl" format="xml" hash="2166980284">
     <data-source source="LOCAL" name="Derby - magnolia@localhost" uuid="473e5430-84dc-494e-a4f9-b054827d5de3">
-      <driver-ref>derby.embedded</driver-ref>
+      <driver-ref>9188ebba-6c18-49d7-85e5-0e2584cf240d</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.ClientDriver</jdbc-driver>
       <jdbc-url>jdbc:derby://localhost:1527/db/magnolia</jdbc-url>

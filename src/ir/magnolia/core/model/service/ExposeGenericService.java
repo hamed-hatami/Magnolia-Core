@@ -138,6 +138,41 @@ public class ExposeGenericService {
     }
 
     @POST
+    @Path("/searchSystemTicket")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String searchSystemTicket(String ticket, String sessionID) {
+        try {
+            return genericService.searchSystemTicket(ticket, sessionID);
+        } catch (Exception e) {
+            return "0";
+        }
+    }
+
+    @POST
+    @Path("/getIssuedTicketPNR")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String getIssuedTicketPNR(String reservedCode) {
+        try {
+            return genericService.getIssuedTicketPNR(reservedCode);
+        } catch (Exception e) {
+            return "0";
+        }
+    }
+    @POST
+    @Path("/remainingAccount")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String remainingAccount(String account) {
+        try {
+            return genericService.remainingAccount(account);
+        } catch (Exception e) {
+            return "0";
+        }
+    }
+
+    @POST
     @Path("/getAllTicket")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
