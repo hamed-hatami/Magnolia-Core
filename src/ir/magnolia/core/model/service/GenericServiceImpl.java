@@ -1,5 +1,6 @@
 package ir.magnolia.core.model.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import ir.magnolia.core.model.dao.FriendDAOImpl;
 import ir.magnolia.core.model.dao.MemberDAOImpl;
 import ir.magnolia.core.model.entity.Friend;
@@ -39,7 +40,6 @@ public class GenericServiceImpl {
         } catch (Exception e) {
             return "0";
         }
-
     }
 
     public String editFriend(Friend friend) throws Exception {
@@ -128,9 +128,10 @@ public class GenericServiceImpl {
         return resTfulClientUtil.restFullService(SERVICE_URL, account);
     }
 
-    public String searchSystemTicket(String queryString, String sessionID) throws Exception {
+    public String searchSystemTicket(String queryString) throws Exception {
         String message = resTfulClientUtil.restFullService(SERVICE_URL, queryString);
-        return resTfulClientUtil.restFullService(SERVICE_URL, "{\"MethodName\":\"GetSystemTicketResualt\",\"SessionID\":\"" + sessionID + "\",\"Parameters\":[{\"SearchCode\":\"" + message + "\"}]}");
+        JsonNode root = JsonUtil.objectMapper.readTree(queryString);
+        return resTfulClientUtil.restFullService(SERVICE_URL, "{\"MethodName\":\"GetSystemTicketResualt\",\"SessionID\":\"" + root.at("/SessionID").asText() + "\",\"Parameters\":[{\"SearchCode\":\"" + message + "\"}]}");
     }
 
 }
