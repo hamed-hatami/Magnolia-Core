@@ -3,10 +3,7 @@ package ir.magnolia.core.model.service;
 import ir.magnolia.core.model.entity.Friend;
 
 import javax.ejb.EJB;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.Set;
 
@@ -141,9 +138,9 @@ public class ExposeGenericService {
     @Path("/searchSystemTicket")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String searchSystemTicket(String ticket, String sessionID) {
+    public String searchSystemTicket(String ticket) {
         try {
-            return genericService.searchSystemTicket(ticket, sessionID);
+            return genericService.searchSystemTicket(ticket);
         } catch (Exception e) {
             return "0";
         }
@@ -160,6 +157,7 @@ public class ExposeGenericService {
             return "0";
         }
     }
+
     @POST
     @Path("/remainingAccount")
     @Produces(MediaType.APPLICATION_JSON)
