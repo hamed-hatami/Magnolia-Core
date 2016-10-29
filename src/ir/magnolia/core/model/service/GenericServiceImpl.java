@@ -130,8 +130,9 @@ public class GenericServiceImpl {
 
     public String searchSystemTicket(String queryString) throws Exception {
         String message = resTfulClientUtil.restFullService(SERVICE_URL, queryString);
-        JsonNode root = JsonUtil.objectMapper.readTree(queryString);
-        return resTfulClientUtil.restFullService(SERVICE_URL, "{\"MethodName\":\"GetSystemTicketResualt\",\"SessionID\":\"" + root.at("/SessionID").asText() + "\",\"Parameters\":[{\"SearchCode\":\"" + message + "\"}]}");
+        JsonNode messageKey = JsonUtil.objectMapper.readTree(message);
+        JsonNode sessionKey = JsonUtil.objectMapper.readTree(queryString);
+        return resTfulClientUtil.restFullService(SERVICE_URL, "{\"MethodName\":\"GetSystemTicketResualt\",\"SessionID\":\"" + sessionKey.at("/SessionID").asText() + "\",\"Parameters\":[{\"SearchCode\":\"" + messageKey.get(0).get("Message").asText() + "\"}]}");
     }
 
 }
