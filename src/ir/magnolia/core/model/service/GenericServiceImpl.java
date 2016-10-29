@@ -132,6 +132,11 @@ public class GenericServiceImpl {
         String message = resTfulClientUtil.restFullService(SERVICE_URL, queryString);
         JsonNode messageKey = JsonUtil.objectMapper.readTree(message);
         JsonNode sessionKey = JsonUtil.objectMapper.readTree(queryString);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return resTfulClientUtil.restFullService(SERVICE_URL, "{\"MethodName\":\"GetSystemTicketResualt\",\"SessionID\":\"" + sessionKey.at("/SessionID").asText() + "\",\"Parameters\":[{\"SearchCode\":\"" + messageKey.get(0).get("Message").asText() + "\"}]}");
     }
 
