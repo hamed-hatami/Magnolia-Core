@@ -8,7 +8,7 @@ import java.util.List;
 
 public class JsonUtil {
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
+    public static ObjectMapper objectMapper = new ObjectMapper();
 
     public static String object2Json(Object reserve) throws Exception {
         return objectMapper.writeValueAsString(reserve);
