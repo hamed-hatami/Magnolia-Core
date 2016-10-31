@@ -132,12 +132,31 @@ public class GenericServiceImpl {
         String message = resTfulClientUtil.restFullService(SERVICE_URL, queryString);
         JsonNode messageKey = JsonUtil.objectMapper.readTree(message);
         JsonNode sessionKey = JsonUtil.objectMapper.readTree(queryString);
+
+        String result = "";
+        int counter = 0;
         try {
-            Thread.sleep(10000);
+            Thread.sleep(8000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return resTfulClientUtil.restFullService(SERVICE_URL, "{\"MethodName\":\"GetSystemTicketResualt\",\"SessionID\":\"" + sessionKey.at("/SessionID").asText() + "\",\"Parameters\":[{\"SearchCode\":\"" + messageKey.get(0).get("Message").asText() + "\"}]}");
+
+        while (counter <= 3) {
+            result = resTfulClientUtil.restFullService(SERVICE_URL, "{\"MethodName\":\"GetSystemTicketResualt\",\"SessionID\":\"" + sessionKey.at("/SessionID").asText() + "\",\"Parameters\":[{\"SearchCode\":\"" + messageKey.get(0).get("Message").asText() + "\"}]}");
+            System.out.println("counter >> " + counter);
+            if (!result.trim().equalsIgnoreCase("[]")) {
+                System.out.println(">>> Bbreak");
+                break;
+            } else {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                counter++;
+            }
+        }
+        return result;
     }
 
 }
