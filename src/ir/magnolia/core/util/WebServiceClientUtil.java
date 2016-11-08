@@ -25,7 +25,7 @@ public class WebServiceClientUtil {
             NiksmsWebserviceLocator locator = new NiksmsWebserviceLocator();
             INiksmsWebservice service = locator.getBasicHttpBinding_INiksmsWebservice();
             String[] destinationNumbers = {phoneNumber};
-            long[] messageId = new long[]{256};
+            long[] messageId = new long[]{gen()};
             String[] messages = {String.valueOf(gen())};
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
