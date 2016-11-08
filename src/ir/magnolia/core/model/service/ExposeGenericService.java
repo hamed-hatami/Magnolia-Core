@@ -66,9 +66,9 @@ public class ExposeGenericService {
     @Path("/sendMessage")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String sendMessage(String mobileNumber, String message) {
+    public String sendMessage(String content) {
         try {
-            return genericService.sendMessage(mobileNumber, message);
+            return genericService.sendMessage(content);
         } catch (Exception e) {
             return "0";
         }
@@ -90,9 +90,9 @@ public class ExposeGenericService {
     @Path("/confirmKey")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String confirmKey(String mobileNumber, String key) {
+    public String confirmKey(String content) {
         try {
-            return genericService.confirmKey(mobileNumber, key);
+            return genericService.confirmKey(content);
         } catch (Exception e) {
             return "0";
         }

@@ -73,7 +73,10 @@ public class GenericServiceImpl {
         return member.getFriends();
     }
 
-    public String sendMessage(String mobileNumber, String message) throws Exception {
+    public String sendMessage(String content) throws Exception {
+        JsonNode contentKey = JsonUtil.objectMapper.readTree(content);
+        String mobileNumber = contentKey.at("/mobileNumber").asText();
+        String message = contentKey.at("/message").asText();
         return webServiceClientUtil.sendMessage(mobileNumber, message);
     }
 
@@ -82,7 +85,10 @@ public class GenericServiceImpl {
         return resTfulClientUtil.restFullService(SERVICE_URL, mobileNumber);
     }
 
-    public String confirmKey(String mobileNumber, String key) throws Exception {
+    public String confirmKey(String content) throws Exception {
+        JsonNode contentKey = JsonUtil.objectMapper.readTree(content);
+        String mobileNumber = contentKey.at("/mobileNumber").asText();
+        String key = contentKey.at("/key").asText();
         Member member = memberDAO.findByCodeAndMobileNumber(mobileNumber, key);
         if (member != null) {
             return "true";
@@ -93,7 +99,7 @@ public class GenericServiceImpl {
     public String generateKey(String mobileNumber) throws Exception {
         JsonNode phoneKey = JsonUtil.objectMapper.readTree(mobileNumber);
         String generatedCode = webServiceClientUtil.sendCode(phoneKey.at("/mobileNumber").asText());
-        memberDAO.create(new Member(mobileNumber, generatedCode));
+        memberDAO.create(new Member(phoneKey.at("/mobileNumber").asText(), generatedCode));
         return generatedCode;
     }
 
