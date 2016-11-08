@@ -91,7 +91,8 @@ public class GenericServiceImpl {
     }
 
     public String generateKey(String mobileNumber) throws Exception {
-        String generatedCode = webServiceClientUtil.sendCode(mobileNumber);
+        JsonNode phoneKey = JsonUtil.objectMapper.readTree(mobileNumber);
+        String generatedCode = webServiceClientUtil.sendCode(phoneKey.at("/mobileNumber").asText());
         memberDAO.create(new Member(mobileNumber, generatedCode));
         return generatedCode;
     }
