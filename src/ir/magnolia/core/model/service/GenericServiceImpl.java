@@ -143,9 +143,7 @@ public class GenericServiceImpl {
 
         while (counter <= 3) {
             result = resTfulClientUtil.restFullService(SERVICE_URL, "{\"MethodName\":\"GetSystemTicketResualt\",\"SessionID\":\"" + sessionKey.at("/SessionID").asText() + "\",\"Parameters\":[{\"SearchCode\":\"" + messageKey.get(0).get("Message").asText() + "\"}]}");
-            System.out.println("counter >> " + counter);
             if (!result.trim().equalsIgnoreCase("[]")) {
-                System.out.println(">>> Bbreak");
                 break;
             } else {
                 try {
