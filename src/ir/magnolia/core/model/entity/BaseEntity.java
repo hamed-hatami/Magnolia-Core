@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class BaseEntity implements Serializable {
 
-    @NotNull
     @Column(name = "register_date")
     private String registerDate;
 
