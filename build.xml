@@ -78,6 +78,8 @@
                 <include name="*.xml"/>
             </zipfileset>
             <zipfileset id="war.lib" prefix="WEB-INF/lib" dir="${lib.dir}">
+                <include name="axis.jar"/>
+                <include name="wsdl4j-1.6.2.jar"/>
                 <include name="commons-digester.jar"/>
                 <include name="commons-fileupload.jar"/>
                 <include name="commons-discovery.jar"/>
@@ -101,6 +103,7 @@
             </zipfileset>
             <zipfileset id="war.classes" dir="${classes.dir}" prefix="WEB-INF/classes">
                 <include name="**/magnolia/**/*.class"/>
+                <include name="**/org/tempuri/**/*.class"/>
                 <include name="**/resources/*.properties"/>
             </zipfileset>
             <zipfileset id="war.webinf.seam" prefix="WEB-INF/classes" dir="${resources.dir}">
