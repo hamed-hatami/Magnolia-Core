@@ -1,19 +1,39 @@
 package ir.magnolia.core.util;
 
 
+import org.joda.time.DateTime;
 import org.tempuri.*;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
+import java.time.ZonedDateTime;
+import java.util.*;
 
 
 public class WebServiceClientUtil {
 
-    public static void main(String[] args) {
+    public static XMLGregorianCalendar convertStringToXmlGregorian(String dateString, DateFormat dateFormat) {
+        try {
+            Date date = dateFormat.parse(dateString);
+            GregorianCalendar gregorianCalendar = (GregorianCalendar) GregorianCalendar.getInstance();
+            gregorianCalendar.setTime(date);
+            return DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+    public static void main(String[] args) throws Exception {
         System.out.println(new WebServiceClientUtil().sendCode("09124472787"));
     }
+
 
     private int gen() {
         Random r = new Random(System.currentTimeMillis());
@@ -27,17 +47,18 @@ public class WebServiceClientUtil {
             String[] destinationNumbers = {phoneNumber};
             long[] messageId = new long[]{gen()};
             String[] messages = {String.valueOf(gen())};
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
-            calendar.setTime(simpleDateFormat.parse(simpleDateFormat.format(new Date())));
-            ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, calendar, OperatorSmsSendType.Normal, messageId, messages));
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
+            dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+            String formattedDate = dateFormat.format(new Date());
+            ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, convertStringToXmlGregorian(formattedDate, dateFormat).toGregorianCalendar(), OperatorSmsSendType.Normal, messageId, messages));
             if (result.getStatus().getValue().equalsIgnoreCase("Successful")) {
                 return messages[0];
             } else {
                 return "0";
             }
         } catch (Exception e) {
-            return "0";
+            e.printStackTrace();
+            return "-1";
         }
     }
 
@@ -48,10 +69,10 @@ public class WebServiceClientUtil {
             String[] destinationNumbers = {phoneNumber};
             long[] messageId = new long[]{256};
             String[] messages = {message};
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
-            calendar.setTime(simpleDateFormat.parse(simpleDateFormat.format(new Date())));
-            ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, calendar, OperatorSmsSendType.Normal, messageId, messages));
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
+            dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+            String formattedDate = dateFormat.format(new Date());
+            ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, convertStringToXmlGregorian(formattedDate, dateFormat).toGregorianCalendar(), OperatorSmsSendType.Normal, messageId, messages));
             if (result.getStatus().getValue().equalsIgnoreCase("Successful")) {
                 return messages[0];
             } else {
