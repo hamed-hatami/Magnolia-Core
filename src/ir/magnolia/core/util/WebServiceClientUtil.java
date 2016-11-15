@@ -3,26 +3,12 @@ package ir.magnolia.core.util;
 
 import org.tempuri.*;
 
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Random;
+import java.util.TimeZone;
 
 
 public class WebServiceClientUtil {
-
-    public static XMLGregorianCalendar convertStringToXmlGregorian(String dateString, DateFormat dateFormat) {
-        try {
-            Date date = dateFormat.parse(dateString);
-            GregorianCalendar gregorianCalendar = (GregorianCalendar) GregorianCalendar.getInstance();
-            gregorianCalendar.setTime(date);
-            return DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
-        } catch (Exception e) {
-            return null;
-        }
-
-    }
 
     public static void main(String[] args) throws Exception {
         System.out.println(new WebServiceClientUtil().sendCode("09308419839"));
@@ -40,9 +26,14 @@ public class WebServiceClientUtil {
             String[] destinationNumbers = {phoneNumber};
             long[] messageId = new long[]{gen()};
             String[] messages = {String.valueOf(gen())};
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
-            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(Configuration.getProperty("timezone")));
-            ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, convertStringToXmlGregorian(dateFormat.format(calendar.getTime()), dateFormat).toGregorianCalendar(), OperatorSmsSendType.Normal, messageId, messages));
+
+            Calendar localCalendar = Calendar.getInstance(TimeZone.getDefault());
+            long gmtTime = localCalendar.getTime().getTime();
+            long timezoneAlteredTime = gmtTime + TimeZone.getTimeZone(Configuration.getProperty("timezone")).getRawOffset();
+            Calendar tehranCalendar = Calendar.getInstance(TimeZone.getTimeZone(Configuration.getProperty("timezone")));
+            tehranCalendar.setTimeInMillis(timezoneAlteredTime);
+
+            ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, tehranCalendar, OperatorSmsSendType.Normal, messageId, messages));
             if (result.getStatus().getValue().equalsIgnoreCase("Successful")) {
                 return messages[0];
             } else {
@@ -61,9 +52,12 @@ public class WebServiceClientUtil {
             String[] destinationNumbers = {phoneNumber};
             long[] messageId = new long[]{256};
             String[] messages = {message};
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
-            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(Configuration.getProperty("timezone")));
-            ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, convertStringToXmlGregorian(dateFormat.format(calendar.getTime()), dateFormat).toGregorianCalendar(), OperatorSmsSendType.Normal, messageId, messages));
+            Calendar localCalendar = Calendar.getInstance(TimeZone.getDefault());
+            long gmtTime = localCalendar.getTime().getTime();
+            long timezoneAlteredTime = gmtTime + TimeZone.getTimeZone(Configuration.getProperty("timezone")).getRawOffset();
+            Calendar tehranCalendar = Calendar.getInstance(TimeZone.getTimeZone(Configuration.getProperty("timezone")));
+            tehranCalendar.setTimeInMillis(timezoneAlteredTime);
+            ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, tehranCalendar, OperatorSmsSendType.Normal, messageId, messages));
             if (result.getStatus().getValue().equalsIgnoreCase("Successful")) {
                 return messages[0];
             } else {

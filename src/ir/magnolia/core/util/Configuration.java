@@ -51,7 +51,7 @@ public class Configuration {
         Properties props = new Properties();
         try {
             ClassLoader loader = Configuration.class.getClassLoader();
-            InputStream in = loader.getResourceAsStream("magnolia.properties"); //loader.getResourceAsStream("magnolia.properties");//new FileInputStream("C:\\project\\Magnolia-Core\\resources\\magnolia.properties");
+            InputStream in = loader.getResourceAsStream("magnolia.properties");//new FileInputStream("C:\\project\\Magnolia-Core\\resources\\magnolia.properties");//loader.getResourceAsStream("magnolia.properties");//new FileInputStream("C:\\project\\Magnolia-Core\\resources\\magnolia.properties");
             props.load(in);
         } catch (FileNotFoundException e) {
             throw e;
