@@ -30,6 +30,10 @@ public class WebServiceClientUtil {
 
     }
 
+    public static void main(String[] args) throws Exception {
+        System.out.println(new WebServiceClientUtil().sendCode("09124472787"));
+    }
+
     private int gen() {
         Random r = new Random(System.currentTimeMillis());
         return ((1 + r.nextInt(2)) * 10000 + r.nextInt(10000));
