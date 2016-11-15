@@ -1,5 +1,6 @@
 package ir.magnolia.core.util;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,7 +51,7 @@ public class Configuration {
         Properties props = new Properties();
         try {
             ClassLoader loader = Configuration.class.getClassLoader();
-            InputStream in = loader.getResourceAsStream("magnolia.properties");
+            InputStream in = loader.getResourceAsStream("magnolia.properties");//new FileInputStream("C:\\project\\Magnolia-Core\\resources\\magnolia.properties");
             props.load(in);
         } catch (FileNotFoundException e) {
             throw e;
