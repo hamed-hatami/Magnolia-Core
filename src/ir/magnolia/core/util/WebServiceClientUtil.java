@@ -43,7 +43,7 @@ public class WebServiceClientUtil {
             long[] messageId = new long[]{gen()};
             String[] messages = {String.valueOf(gen())};
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
-            dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+            dateFormat.setTimeZone(TimeZone.getTimeZone(Configuration.getProperty("timezone")));
             String formattedDate = dateFormat.format(new Date());
             ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, convertStringToXmlGregorian(formattedDate, dateFormat).toGregorianCalendar(), OperatorSmsSendType.Normal, messageId, messages));
             if (result.getStatus().getValue().equalsIgnoreCase("Successful")) {
@@ -65,7 +65,7 @@ public class WebServiceClientUtil {
             long[] messageId = new long[]{256};
             String[] messages = {message};
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm");
-            dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+            dateFormat.setTimeZone(TimeZone.getTimeZone(Configuration.getProperty("timezone")));
             String formattedDate = dateFormat.format(new Date());
             ReturnSmsResult result = service.ptpSms(new AuthenticationModel(Configuration.getProperty("sms_username"), Configuration.getProperty("sms_password")), new PtpSmsModel("9830006179", destinationNumbers, convertStringToXmlGregorian(formattedDate, dateFormat).toGregorianCalendar(), OperatorSmsSendType.Normal, messageId, messages));
             if (result.getStatus().getValue().equalsIgnoreCase("Successful")) {
