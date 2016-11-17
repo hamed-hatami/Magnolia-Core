@@ -42,9 +42,9 @@ public class ExposeGenericService {
     @Path("/addFriend")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String addFriend(String ownerMobileNumber, Friend friend) {
+    public String addFriend(String friend) {
         try {
-            return genericService.addFriend(ownerMobileNumber, friend);
+            return genericService.addFriend(friend);
         } catch (Exception e) {
             return "false";
         }

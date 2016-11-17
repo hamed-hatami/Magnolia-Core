@@ -27,6 +27,10 @@ public class Friend extends BaseEntity {
     private String nationalCode;
     @Column(name = "birth_date")
     private String birthDate;
+    @Column(name = "ageType")
+    private String ageType;
+    @Column(name = "sexType")
+    private String sexType;
 
     public Friend() {
     }
@@ -105,5 +109,21 @@ public class Friend extends BaseEntity {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getAgeType() {
+        return ageType;
+    }
+
+    public void setAgeType(String ageType) {
+        this.ageType = ageType;
+    }
+
+    public String getSexType() {
+        return sexType;
+    }
+
+    public void setSexType(String sexType) {
+        this.sexType = sexType;
     }
 }

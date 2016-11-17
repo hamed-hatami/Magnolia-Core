@@ -12,6 +12,8 @@ public class MemberDAOImpl<T extends Member> extends BaseDAOImpl<T> {
 
     public T findByCodeAndMobileNumber(String mobileNumber, String generatedCode) {
         try {
+            System.out.println("Code : " + generatedCode);
+            System.out.println("phone : " + mobileNumber);
             return (T) em.createNamedQuery("Member.findByCode")
                     .setParameter("number", mobileNumber)
                     .setParameter("code", generatedCode)
