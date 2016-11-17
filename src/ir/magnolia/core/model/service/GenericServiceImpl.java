@@ -86,7 +86,9 @@ public class GenericServiceImpl {
         }
     }
 
-    public String listOfFriends(String mobileNumber) throws Exception {
+    public String listOfFriends(String content) throws Exception {
+        JsonNode contentKey = JsonUtil.objectMapper.readTree(content);
+        String mobileNumber = contentKey.at("/mobileNumber").asText();
         Member member = memberDAO.memberByMobileNumber(mobileNumber);
         Set<Friend> friends = member.getFriends();
         return JsonUtil.objectMapper.writeValueAsString(friends);

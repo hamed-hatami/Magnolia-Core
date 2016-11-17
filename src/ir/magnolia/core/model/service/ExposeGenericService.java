@@ -54,9 +54,9 @@ public class ExposeGenericService {
     @Path("/listOfFriends")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Set<Friend> listOfFriends(String mobileNumber) {
+    public String listOfFriends(String content) {
         try {
-            return genericService.listOfFriends(mobileNumber);
+            return genericService.listOfFriends(content);
         } catch (Exception e) {
             return null;
         }
