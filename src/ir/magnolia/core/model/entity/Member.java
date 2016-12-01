@@ -24,7 +24,7 @@ public class Member extends BaseEntity {
     private String lastModificationDate;
     @Column(name = "member_active")
     private boolean active;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id", name = "member_id")
     private Set<Friend> friends = new HashSet<>();
 

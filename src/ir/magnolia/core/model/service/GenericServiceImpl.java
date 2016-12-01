@@ -16,10 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -62,23 +59,23 @@ public class GenericServiceImpl {
     }
 
     public String addFriend(String friend) throws Exception {
-        //String s = {"mobileNumber":"09124472787","friend":[{"firstName":"حامد"},{"lastName":"حاتمی"},{"latinFirstName":"Hamed"},{"latinLastName":"Hatami"},{"nationalCode":"0070810213"},{"birthDate":"1395/01/01"},{"sexType":"male"},{"ageType":"child"}]}
         JsonNode contentKey = JsonUtil.objectMapper.readTree(friend);
         String mobileNumber = contentKey.at("/mobileNumber").asText();
         Member member = memberDAO.memberByMobileNumber(mobileNumber);
         Friend friend1 = new Friend();
         JsonNode friendNode = contentKey.path("friend");
-        friend1.setFirstName(friendNode.path("firstName").asText());
-        friend1.setLastName(friendNode.path("lastName").asText());
-        friend1.setLatinFirstName(friendNode.path("latinFirstName").asText());
-        friend1.setLatinLastName(friendNode.path("latinLastName").asText());
-        friend1.setNationalCode(friendNode.path("nationalCode").asText());
-        friend1.setBirthDate(friendNode.path("birthDate").asText());
-        friend1.setSexType(friendNode.path("sexType").asText());
-        friend1.setAgeType(friendNode.path("ageType").asText());
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         friend1.setRegisterDate(dateFormat.format(new Date()));
-        member.setFriends(new HashSet<>(Collections.singletonList(friend1)));
+        friend1.setFirstName(friendNode.get(0).at("/firstName").asText());
+        friend1.setLastName(friendNode.get(1).at("/lastName").asText());
+        friend1.setLatinFirstName(friendNode.get(2).at("/latinFirstName").asText());
+        friend1.setLatinLastName(friendNode.get(3).at("/latinLastName").asText());
+        friend1.setNationalCode(friendNode.get(4).at("/nationalCode").asText());
+        friend1.setBirthDate(friendNode.get(5).at("/birthDate").asText());
+        friend1.setSexType(friendNode.get(6).at("/sexType").asText());
+        friend1.setAgeType(friendNode.get(7).at("/ageType").asText());
+
+        member.setFriends(new HashSet<>(Arrays.asList(friend1)));
         if (memberDAO.update(member) != null) {
             return "true";
         } else {

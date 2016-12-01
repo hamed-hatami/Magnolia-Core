@@ -44,6 +44,7 @@ public class ExposeGenericService {
     @Consumes(MediaType.APPLICATION_JSON)
     public String addFriend(String friend) {
         try {
+            System.out.println("add called");
             return genericService.addFriend(friend);
         } catch (Exception e) {
             return "false";
