@@ -118,7 +118,7 @@ public class GenericServiceImpl {
         JsonNode phoneKey = JsonUtil.objectMapper.readTree(mobileNumber);
         String generatedCode = webServiceClientUtil.sendCode(phoneKey.at("/mobileNumber").asText());
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm:ss");
-        memberDAO.create(new Member(phoneKey.at("/mobileNumber").asText(), generatedCode, dateFormat.format(new Date()), true));
+        memberDAO.create(new Member(phoneKey.at("/mobileNumber").asText(), generatedCode, dateFormat.format(new Date()), "true"));
         return generatedCode;
     }
 

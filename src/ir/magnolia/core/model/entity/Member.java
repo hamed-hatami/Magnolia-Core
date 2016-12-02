@@ -23,7 +23,7 @@ public class Member extends BaseEntity {
     @Column(name = "last_modify_date")
     private String lastModificationDate;
     @Column(name = "member_active")
-    private boolean active;
+    private String active;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id", name = "member_id")
     private Set<Friend> friends = new HashSet<>();
@@ -36,7 +36,7 @@ public class Member extends BaseEntity {
         this.membershipCode = membershipCode;
     }
 
-    public Member(String mobileNumber, String membershipCode, String lastModificationDate, boolean active) {
+    public Member(String mobileNumber, String membershipCode, String lastModificationDate, String active) {
         this.mobileNumber = mobileNumber;
         this.membershipCode = membershipCode;
         this.lastModificationDate = lastModificationDate;
@@ -75,11 +75,11 @@ public class Member extends BaseEntity {
         this.lastModificationDate = lastModificationDate;
     }
 
-    public boolean isActive() {
+    public String getActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(String active) {
         this.active = active;
     }
 
