@@ -13,6 +13,7 @@ public class RESTfulClientUtil {
         try {
             HttpClient client = new DefaultHttpClient();
             HttpPost postRequest = new HttpPost(url);
+            postRequest.setHeader("Accept", "application/json");
             postRequest.setHeader("Content-type", "application/json");
             postRequest.setEntity(new StringEntity(jsonString, "UTF-8"));
             HttpResponse response = client.execute(postRequest);
