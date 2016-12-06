@@ -74,10 +74,19 @@ public class GenericServiceImpl {
         friend1.setBirthDate(friendNode.get(5).at("/birthDate").asText());
         friend1.setSexType(friendNode.get(6).at("/sexType").asText());
         friend1.setAgeType(friendNode.get(7).at("/ageType").asText());
-
-        member.setFriends(new HashSet<>(Arrays.asList(friend1)));
-        if (memberDAO.update(member) != null) {
-            return "true";
+        boolean flag = false;
+        for (Friend frnd : member.getFriends()) {
+            if (frnd.getNationalCode().equalsIgnoreCase(friend1.getNationalCode())) {
+                flag = true;
+            }
+        }
+        if (!flag) {
+            member.setFriends(new HashSet<>(Arrays.asList(friend1)));
+            if (memberDAO.update(member) != null) {
+                return "true";
+            } else {
+                return "false";
+            }
         } else {
             return "false";
         }
