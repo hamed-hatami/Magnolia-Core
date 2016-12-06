@@ -27,7 +27,6 @@ public class MemberDAOImpl<T extends Member> extends BaseDAOImpl<T> {
                     .setParameter("number", mobileNumber)
                     .getSingleResult();
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
