@@ -83,12 +83,12 @@ public class GenericServiceImpl {
         if (!flag) {
             member.setFriends(new HashSet<>(Arrays.asList(friend1)));
             if (memberDAO.update(member) != null) {
-                return "true";
+                return "1";
             } else {
-                return "false";
+                return "0";
             }
         } else {
-            return "false";
+            return "-1";
         }
     }
 
