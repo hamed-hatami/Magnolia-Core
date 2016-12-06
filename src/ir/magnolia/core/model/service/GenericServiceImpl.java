@@ -42,19 +42,45 @@ public class GenericServiceImpl {
         }
     }
 
-    public String editFriend(Friend friend) throws Exception {
-        if (friendDAO.update(friend) != null) {
-            return "true";
+    public String editFriend(String friend) throws Exception {
+        JsonNode contentKey = JsonUtil.objectMapper.readTree(friend);
+        String mobileNumber = contentKey.at("/mobileNumber").asText();
+        Member member = memberDAO.memberByMobileNumber(mobileNumber);
+        JsonNode friendNode = contentKey.path("friend");
+        String nationalCode = friendNode.get(4).at("/nationalCode").asText();
+        Friend friend1 = null;
+        for (Friend frnd : member.getFriends()) {
+            if (frnd.getNationalCode().equalsIgnoreCase(nationalCode.trim())) {
+                friend1 = frnd;
+                break;
+            }
+        }
+        friend1.setFirstName(friendNode.get(0).at("/firstName").asText());
+        friend1.setLastName(friendNode.get(1).at("/lastName").asText());
+        friend1.setLatinFirstName(friendNode.get(2).at("/latinFirstName").asText());
+        friend1.setLatinLastName(friendNode.get(3).at("/latinLastName").asText());
+        friend1.setBirthDate(friendNode.get(5).at("/birthDate").asText());
+        friend1.setSexType(friendNode.get(6).at("/sexType").asText());
+        friend1.setAgeType(friendNode.get(7).at("/ageType").asText());
+        if (friendDAO.update(friend1) != null) {
+            return "1";
         } else {
-            return "false";
+            return "0";
         }
     }
 
-    public String deleteFriend(Friend friend) throws Exception {
-        if (friendDAO.delete(friend)) {
-            return "true";
+    public String deleteFriend(String nationalCode) throws Exception {
+        JsonNode contentKey = JsonUtil.objectMapper.readTree(nationalCode);
+        String national = contentKey.at("/nationalCode").asText();
+        Friend friend = friendDAO.findByNationalCode(national.trim());
+        if (friend != null) {
+            if (friendDAO.delete(friend)) {
+                return "1";
+            } else {
+                return "0";
+            }
         } else {
-            return "false";
+            return "-1";
         }
     }
 
@@ -78,6 +104,7 @@ public class GenericServiceImpl {
         for (Friend frnd : member.getFriends()) {
             if (frnd.getNationalCode().equalsIgnoreCase(friend1.getNationalCode())) {
                 flag = true;
+                break;
             }
         }
         if (!flag) {

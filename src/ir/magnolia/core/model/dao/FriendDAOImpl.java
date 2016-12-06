@@ -9,4 +9,14 @@ import javax.ejb.Stateless;
 @LocalBean
 public class FriendDAOImpl<T extends Friend> extends BaseDAOImpl<T> {
 
+    public T findByNationalCode(String nationalCode) {
+        try {
+            return (T) em.createNamedQuery("Friend.findByNationalCode")
+                    .setParameter("nationalCode", nationalCode)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

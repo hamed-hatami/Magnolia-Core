@@ -7,6 +7,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "tb_friend")
+@NamedQueries({
+        @NamedQuery(name = "Friend.findByNationalCode", query = "select f from Friend f where f.nationalCode=:nationalCode")
+})
 public class Friend extends BaseEntity {
 
     @Id
