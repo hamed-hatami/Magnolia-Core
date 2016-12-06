@@ -108,7 +108,7 @@ public class GenericServiceImpl {
             }
         }
         if (!flag) {
-            member.setFriends(new HashSet<>(Arrays.asList(friend1)));
+            member.getFriends().add(friend1);
             if (memberDAO.update(member) != null) {
                 return "1";
             } else {
