@@ -18,11 +18,11 @@ public class ExposeGenericService {
     @Path("/editFriend")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String editFriend(Friend friend) {
+    public String editFriend(String friend) {
         try {
             return genericService.editFriend(friend);
         } catch (Exception e) {
-            return "false";
+            return "0";
         }
     }
 
@@ -30,11 +30,11 @@ public class ExposeGenericService {
     @Path("/deleteFriend")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String deleteFriend(Friend friend) {
+    public String deleteFriend(String friend) {
         try {
             return genericService.deleteFriend(friend);
         } catch (Exception e) {
-            return "false";
+            return "0";
         }
     }
 
@@ -47,7 +47,7 @@ public class ExposeGenericService {
             System.out.println("add called");
             return genericService.addFriend(friend);
         } catch (Exception e) {
-            return "false";
+            return "0";
         }
     }
 
