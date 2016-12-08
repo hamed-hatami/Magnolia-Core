@@ -153,14 +153,15 @@ public class GenericServiceImpl {
     public String generateKey(String mobileNumber) throws Exception {
         JsonNode phoneKey = JsonUtil.objectMapper.readTree(mobileNumber);
         Member member = memberDAO.memberByMobileNumber(phoneKey.at("/mobileNumber").asText());
+        String generatedCode = webServiceClientUtil.sendCode(phoneKey.at("/mobileNumber").asText());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm:ss");
         if (member == null) {
-            String generatedCode = webServiceClientUtil.sendCode(phoneKey.at("/mobileNumber").asText());
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd-hh:mm:ss");
             memberDAO.create(new Member(phoneKey.at("/mobileNumber").asText(), generatedCode, dateFormat.format(new Date()), "true"));
-            return generatedCode;
         } else {
-            return "-1";
+            member.setLastModificationDate(dateFormat.format(new Date()));
+            memberDAO.update(member);
         }
+        return generatedCode;
     }
 
     public String login(String login) throws Exception {
