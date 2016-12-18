@@ -204,7 +204,7 @@ public class GenericServiceImpl {
         String result = "";
         int counter = 0;
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -215,7 +215,7 @@ public class GenericServiceImpl {
                 break;
             } else {
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
