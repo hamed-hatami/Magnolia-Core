@@ -159,6 +159,7 @@ public class GenericServiceImpl {
             memberDAO.create(new Member(phoneKey.at("/mobileNumber").asText(), generatedCode, dateFormat.format(new Date()), "true"));
         } else {
             member.setLastModificationDate(dateFormat.format(new Date()));
+            member.setMembershipCode(generatedCode);
             memberDAO.update(member);
         }
         return generatedCode;
