@@ -83,7 +83,6 @@
                 <include name="commons-digester.jar"/>
                 <include name="commons-fileupload.jar"/>
                 <include name="commons-discovery.jar"/>
-                <include name="commons-codec.jar"/>
                 <include name="commons-httpclient.jar"/>
                 <include name="commons-net.jar"/>
                 <include name="commons-lang.jar"/>
@@ -115,7 +114,7 @@
             </zipfileset>
             <manifest>
                 <attribute name="Built-By" value="Hamed Hatami"/>
-                <attribute name="Dependencies" value="org.apache.cxf, org.dom4j, org.jboss.resteasy.wadl"/>
+                <attribute name="Dependencies" value="org.apache.cxf, org.dom4j, org.jboss.resteasy.wadl, org.apache.commons.codec"/>
             </manifest>
         </jar>
     </target>
