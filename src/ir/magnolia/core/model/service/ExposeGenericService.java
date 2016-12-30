@@ -1,12 +1,13 @@
 package ir.magnolia.core.model.service;
 
-import ir.magnolia.core.model.entity.Friend;
 import ir.magnolia.core.model.security.Secured;
 
 import javax.ejb.EJB;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Set;
 
 
 @Path("/exposeGenericService")
