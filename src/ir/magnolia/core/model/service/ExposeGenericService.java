@@ -19,6 +19,7 @@ public class ExposeGenericService {
     @Path("/editFriend")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String editFriend(String friend) {
         try {
             return genericService.editFriend(friend);
@@ -31,6 +32,7 @@ public class ExposeGenericService {
     @Path("/deleteFriend")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String deleteFriend(String friend) {
         try {
             return genericService.deleteFriend(friend);
@@ -43,6 +45,7 @@ public class ExposeGenericService {
     @Path("/addFriend")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String addFriend(String friend) {
         try {
             System.out.println("add called");
@@ -56,6 +59,7 @@ public class ExposeGenericService {
     @Path("/listOfFriends")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String listOfFriends(String content) {
         try {
             return genericService.listOfFriends(content);
@@ -68,6 +72,7 @@ public class ExposeGenericService {
     @Path("/sendMessage")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String sendMessage(String content) {
         try {
             return genericService.sendMessage(content);
@@ -80,6 +85,7 @@ public class ExposeGenericService {
     @Path("/getTicketImage")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String getTicketImage(String mobileNumber, String email) {
         try {
             return genericService.getTicketImage(mobileNumber, email);
@@ -92,6 +98,7 @@ public class ExposeGenericService {
     @Path("/confirmKey")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String confirmKey(String content) {
         try {
             return genericService.confirmKey(content);
@@ -104,6 +111,7 @@ public class ExposeGenericService {
     @Path("/generateKey")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String generateKey(String mobileNumber) {
         try {
             return genericService.generateKey(mobileNumber);
@@ -116,6 +124,7 @@ public class ExposeGenericService {
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String login(String login) {
         try {
             return genericService.login(login);
@@ -128,6 +137,7 @@ public class ExposeGenericService {
     @Path("/findTickets")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String findTickets(String ticket, String sourceCity, String destinationCity, String flighDate) {
         try {
             return genericService.findTickets(ticket, sourceCity, destinationCity, flighDate);
@@ -136,19 +146,12 @@ public class ExposeGenericService {
         }
     }
 
-    @POST
-    @Secured
-    @Path("/echo")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void echo(String param) {
-        System.out.println(">>> " + param);
-    }
 
     @POST
     @Path("/searchSystemTicket")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String searchSystemTicket(String ticket) {
         try {
             return genericService.searchSystemTicket(ticket);
@@ -161,6 +164,7 @@ public class ExposeGenericService {
     @Path("/getIssuedTicketPNR")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String getIssuedTicketPNR(String reservedCode) {
         try {
             return genericService.getIssuedTicketPNR(reservedCode);
@@ -173,6 +177,7 @@ public class ExposeGenericService {
     @Path("/remainingAccount")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String remainingAccount(String account) {
         try {
             return genericService.remainingAccount(account);
@@ -185,6 +190,7 @@ public class ExposeGenericService {
     @Path("/getAllTicket")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String getAllTicket(String ticket) {
         try {
             return genericService.getAllTicket(ticket);
@@ -197,6 +203,7 @@ public class ExposeGenericService {
     @Path("/book")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String book(String book) {
         try {
             return genericService.book(book);
@@ -209,6 +216,7 @@ public class ExposeGenericService {
     @Path("/reserve")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String reserve(String reserve) {
         try {
             return genericService.reserve(reserve);
@@ -221,6 +229,7 @@ public class ExposeGenericService {
     @Path("/checkTicket")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String checkTicket(String checkTicket) {
         try {
             return genericService.checkTicket(checkTicket);
@@ -233,6 +242,7 @@ public class ExposeGenericService {
     @Path("/getTicketFile")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Secured
     public String getTicketFile(String ticketFile) {
         try {
             return genericService.ticketFile(ticketFile);
