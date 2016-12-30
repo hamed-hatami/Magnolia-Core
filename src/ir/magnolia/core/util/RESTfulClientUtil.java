@@ -15,11 +15,10 @@ import java.nio.charset.Charset;
 
 public class RESTfulClientUtil {
 
-    public String restFullService(String url, String jsonString) {
+    public String restFullService(String url, String jsonString, String credentials) {
         try {
             HttpClient client = new DefaultHttpClient();
-            String auth = "09124472787:12345";
-            byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("UTF-8")));
+            byte[] encodedAuth = Base64.encodeBase64(credentials.getBytes(Charset.forName("UTF-8")));
             String authHeader = "Basic " + new String(encodedAuth);
             HttpPost postRequest = new HttpPost(url);
             postRequest.setHeader("Accept", "application/json");
