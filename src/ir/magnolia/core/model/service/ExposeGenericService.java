@@ -1,6 +1,7 @@
 package ir.magnolia.core.model.service;
 
 import ir.magnolia.core.model.entity.Friend;
+import ir.magnolia.core.model.security.Secured;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -133,6 +134,15 @@ public class ExposeGenericService {
         } catch (Exception e) {
             return "0";
         }
+    }
+
+    @POST
+    @Secured
+    @Path("/echo")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void echo(String param) {
+        System.out.println(">>> " + param);
     }
 
     @POST
