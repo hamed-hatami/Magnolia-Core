@@ -99,7 +99,6 @@ public class ExposeGenericService {
     @Path("/confirmKey")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Secured
     public String confirmKey(String content) {
         try {
             return genericService.confirmKey(content);
@@ -112,7 +111,6 @@ public class ExposeGenericService {
     @Path("/generateKey")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Secured
     public String generateKey(String mobileNumber) {
         try {
             return genericService.generateKey(mobileNumber);
