@@ -120,7 +120,7 @@
             <manifest>
                 <attribute name="Built-By" value="Hamed Hatami"/>
                 <attribute name="Dependencies"
-                           value="org.apache.cxf, org.dom4j, org.jboss.resteasy.wadl"/>
+                           value="org.apache.cxf, org.dom4j, org.jboss.resteasy.wadl, javax.mail.api"/>
             </manifest>
         </jar>
     </target>
