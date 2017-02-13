@@ -16,7 +16,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -166,7 +167,8 @@ public class GenericServiceImpl {
     }
 
     public String login(String login) throws Exception {
-        return resTfulClientUtil.restFullService(SERVICE_URL, login);
+        JsonNode sessionKey = JsonUtil.objectMapper.readTree(resTfulClientUtil.restFullService(SERVICE_URL, login));
+        return sessionKey.at("/SessionID").asText().trim();
     }
 
     public String getAllTicket(String ticket) throws Exception {
